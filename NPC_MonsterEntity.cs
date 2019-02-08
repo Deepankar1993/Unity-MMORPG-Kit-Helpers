@@ -34,22 +34,26 @@ namespace MMORPGKIT_Helper
         private GameObject go;
 
         //TODO :: Add Different Transform for Missile Damage Transform and Combat Text Transform 
-        [Header("Damage Transfrom")] [SerializeField]
+        [Header("Damage Transfrom")]
+        [SerializeField]
         private GameObject _damageTransform;
 
         [SerializeField] private Vector3 _damageTransformPosition = new Vector3(0f, 1.2f, 0.25f);
 
-        [Header("BuffBody Transfrom")] [SerializeField]
+        [Header("BuffBody Transfrom")]
+        [SerializeField]
         private GameObject _buffBody;
 
         [SerializeField] private Vector3 _buffBodyTransformPosition = new Vector3(0f, 1f, 0.25f);
 
-        [Header("UIElementContainer")] [SerializeField]
+        [Header("UIElementContainer")]
+        [SerializeField]
         private GameObject _uIElementContainer;
 
         [SerializeField] private Vector3 _uIElementContainerTransformPosition = new Vector3(0f, 0.15f, 0f);
 
-        [Header("MiniMap Container")] [SerializeField]
+        [Header("MiniMap Container")]
+        [SerializeField]
         private GameObject _miniMapContainer;
 
         [SerializeField] private Vector3 _miniMapContainerTransformPosition = new Vector3(0f, -0.15f, 0.25f);
@@ -129,9 +133,9 @@ namespace MMORPGKIT_Helper
                 ? animator.runtimeAnimatorController
                 : characterModel.animatorController;
             //Damage Transform 
-/*        monsterCharacterEntity.meleeDamageTransform = monsterCharacterEntity.meleeDamageTransform != _damageTransform
-            ? _damageTransform.transform
-            : monsterCharacterEntity.meleeDamageTransform;*/
+            /*        monsterCharacterEntity.meleeDamageTransform = monsterCharacterEntity.meleeDamageTransform != _damageTransform
+                        ? _damageTransform.transform
+                        : monsterCharacterEntity.meleeDamageTransform;*/
         }
 
         GameObject MakeDummyGO()
@@ -219,9 +223,10 @@ namespace MMORPGKIT_Helper
             else
             {
                 MakeDummyGO();
-                GameObject nGo = Instantiate(DummyGO, position, Quaternion.identity);
+                GameObject nGo = Instantiate(DummyGO, Vector3.zero, Quaternion.identity, Parent.transform);
                 nGo.name = goname;
-                nGo.transform.parent = Parent.transform;
+                nGo.transform.localPosition = position;
+                //nGo.transform.parent = Parent.transform;
 
                 Debug.Log("nGo  name :: " + nGo.name);
                 Debug.Log("Parent name :: " + gameObject.name);
